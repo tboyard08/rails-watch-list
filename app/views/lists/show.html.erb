@@ -60,14 +60,14 @@
           </div>
 
           <div class="card-footer bg-white">
-
-            <%= link_to "Remove bookmark",
+              <%= button_to "Remove bookmark",
               list_bookmark_path(@list, bookmark),
-              data: {
-                turbo_method: :delete,
-                turbo_confirm: "Are you sure?"
+              method: :delete,
+              form: {
+                data: { turbo_confirm: "Are you sure?" },
+                class: "d-inline"
               },
-              class: "text-danger text-decoration-none" %>
+              class: "btn btn-outline-danger btn-sm" %>
 
           </div>
 
