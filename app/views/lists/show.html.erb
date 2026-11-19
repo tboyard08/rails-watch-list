@@ -11,10 +11,13 @@
       </p>
     </div>
 
+    <%= link_to "Add a movie",
+        new_list_bookmark_path(@list),
+        class: "btn btn-primary" %>
+
     <%= link_to "Back to lists",
         lists_path,
         class: "btn btn-outline-secondary" %>
-
   </div>
 
   <hr>
@@ -52,7 +55,7 @@
             <hr>
 
             <p>
-              <strong>My comment:</strong>
+              <strong>Bookmark:</strong>
             </p>
 
             <p><%= bookmark.comment %></p>
@@ -76,15 +79,6 @@
       </div>
 
     <% end %>
-
-  </div>
-
-  <!-- Add movie -->
-  <div class="mt-4">
-
-    <%= link_to "Add a movie",
-        new_list_bookmark_path(@list),
-        class: "btn btn-primary" %>
 
   </div>
 

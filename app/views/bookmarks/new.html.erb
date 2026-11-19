@@ -3,4 +3,8 @@
   <%= f.input :comment %>
 
   <%= f.button :submit, "Add Movie", class: "btn btn-primary" %>
+
+  <%= link_to "Cancel",
+                  list_path(@list),
+                  class: "btn btn-outline-secondary" %>
 <% end %>
