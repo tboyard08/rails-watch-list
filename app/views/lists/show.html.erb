@@ -1,0 +1,91 @@
+
+<div class="container mt-5">
+
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+      <h1><%= @list.name %></h1>
+      <p class="text-muted">
+        <%= @list.bookmarks.count %> movies in this list
+      </p>
+    </div>
+
+    <%= link_to "Back to lists",
+        lists_path,
+        class: "btn btn-outline-secondary" %>
+
+  </div>
+
+  <hr>
+
+  <!-- Movies -->
+  <div class="row">
+
+    <% @list.bookmarks.includes(:movie).each do |bookmark| %>
+
+      <div class="col-md-4 mb-4">
+
+        <div class="card shadow-sm h-100">
+
+          <% if bookmark.movie.poster_url.present? %>
+            <%= image_tag bookmark.movie.poster_url,
+                class: "card-img-top",
+                style: "height: 250px; object-fit: cover;" %>
+          <% end %>
+
+          <div class="card-body">
+
+            <h5 class="card-title">
+              <%= bookmark.movie.title %>
+            </h5>
+
+            <p class="text-muted">
+              <%= truncate(bookmark.movie.overview, length: 120) %>
+            </p>
+
+            <p>
+              <strong>Rating:</strong>
+              <%= bookmark.movie.rating %>
+            </p>
+
+            <hr>
+
+            <p>
+              <strong>My comment:</strong>
+            </p>
+
+            <p><%= bookmark.comment %></p>
+
+          </div>
+
+          <div class="card-footer bg-white">
+
+            <%= link_to "Remove bookmark",
+              list_bookmark_path(@list, bookmark),
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              },
+              class: "text-danger text-decoration-none" %>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+  <!-- Add movie -->
+  <div class="mt-4">
+
+    <%= link_to "Add a movie",
+        new_list_bookmark_path(@list),
+        class: "btn btn-primary" %>
+
+  </div>
+
+</div>
